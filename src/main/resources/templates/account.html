@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Account</title>
+    <link href="../static/css/border.css" th:href="@{/css/border.css}" rel="stylesheet" />
 </head>
 <body>
-<h1>Account </h1><a style="font-size: 2em" href="http://localhost:8080/advertisement/name">name</a>
-<h2>FirstName: </h2>
-<h2>LastName:</h2>
-<h3>Age:</h3>
-<h3>Description:</h3>
-<h3>Email:</h3>
+<h1>Account </h1>
+<h2 class="border" th:text="${user.firstName}"></h2>
+<h2 class="border" th:text="${user.lastName}"></h2>
+<div class="border">List: <a href="">All Advertisement</a> </div>
+
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
 </form>

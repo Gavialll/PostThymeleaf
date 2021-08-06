@@ -1,4 +1,4 @@
-package com.example.restapi.Dao.Controller;
+package com.example.restapi.Dao.Controllers;
 
 import com.example.restapi.Dao.Model.User;
 import com.example.restapi.Dao.Repository.UserRepository;
@@ -33,7 +33,7 @@ public class ControllerUser {
 
     @GetMapping("/getId")
     public @ResponseBody User getUserById(@RequestParam Integer id) {
-            return usersRepository.findById(id).get();
+        return usersRepository.findById(id).get();
     }
 
     @GetMapping("/getAll")
