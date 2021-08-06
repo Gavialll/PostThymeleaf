@@ -1,4 +1,4 @@
-package com.example.restapi.Dao.Controller;
+package com.example.restapi.Dao.Controllers;
 
 import com.example.restapi.Dao.Model.Advertisement;
 import com.example.restapi.Dao.Repository.AdvertisementRepository;
