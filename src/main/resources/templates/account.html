@@ -1,19 +1,108 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+
 <head>
     <meta charset="UTF-8">
-    <title>Account</title>
-    <link href="../static/css/border.css" th:href="@{/css/border.css}" rel="stylesheet" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertisement</title>
+    <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+    <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+    <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
+    <link href="../static/css/productInfo.css" th:href="@{/css/productInfo.css}" rel="stylesheet">
+    <link href="../static/css/account.css" th:href="@{/css/account.css}" rel="stylesheet">
 </head>
-<body>
-<h1>Account </h1>
-<h2 class="border" th:text="${user.firstName}"></h2>
-<h2 class="border" th:text="${user.lastName}"></h2>
-<div class="border">List: <a href="">All Advertisement</a> </div>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+<body>
+<header>
+    <div id=10 class="header">
+        <div class="wrrapper_logo">
+            <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}" alt="Зображення незнайдено">
+            <h2 class="logo_text">Post</h2>
+        </div>
+
+        <div class="wrrapper_button">
+
+            <button class="btn">Пошук</button>
+
+            <button class="btn">Розширений пошук</button>
+
+            <form th:action="@{/logout}" method="post">
+                <input class="btn" type="submit" value="Sign Out"/>
+            </form>
+        </div>
+
+    </div>
+</header>
+<div class="content">
+    <div class="content_left">
+        <li class="li_content">
+            <ul id = "ul1" class="ul_content">Акаунт</ul>
+            <ul id = "ul2" class="ul_content">Категорії</ul>
+            <ul id = "ul3" class="ul_content">Пошук</ul>
+            <ul id = "ul4"class="ul_content">Про Нас</ul>
+        </li>
+    </div>
+    <div class="content_right">
+        <div>
+            <div class="accountInfo">
+                <div class="accountText userInfo">
+                    <h1 th:text="${user.firstName + ' ' + user.lastName}">firstName</h1>
+
+                    <p th:text="${'Information: ' + user.id}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sint quo inventore laborum, magni nulla nihil incidunt, maxime, consequuntur animi dolor odio culpa officia? Cumque enim provident tenetur facilis repellat.</p>
+                
+                    <p th:text="${'Email: ' + user.email}">email</p>
+                    <p th:text="${'Phone: ' + user.id}">Phone</p>
+
+                    <div class="accountButton">
+                        <a class="btn" th:href="@{/allPost}">all Post</a>
+                        <a class="btn" th:href="@{/addPost}">add Post</a>
+                        <a class="btn">Call</a>
+                    </div>
+                </div>
+
+                <img class="accountImg" src="../static/images/king.png" th:src="${user.img}" alt="Зображення незнайдено">
+                   
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <h6>Україна 2021 Львів "BOARD"</h6>
+</footer>
+
+<!--   <script src='/script/account.js'></script>-->
+<!--   <script src='/script/button.js'></script>-->
+
 </body>
+
 </html>
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"-->
+<!--      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Account</title>-->
+<!--    <link href="../static/css/border.css" th:href="@{/css/border.css}" rel="stylesheet" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Account </h1>-->
+<!--<h2 class="border" th:text="${user.firstName}"></h2>-->
+<!--<h2 class="border" th:text="${user.lastName}"></h2>-->
+<!--<div class="border">List: <a href="allAdvertisement">All Advertisement</a> </div>-->
+
+<!--<form th:action="@{/logout}" method="post">-->
+<!--    <input type="submit" value="Sign Out"/>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->

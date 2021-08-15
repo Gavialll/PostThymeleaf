@@ -1,0 +1,137 @@
+.content{
+    margin: auto;
+    margin-bottom: 30px;
+    width: 80%;
+    height: max-content;
+    display: flex;
+    justify-content: left;
+}
+.content_left{
+    max-width: 130px;
+    min-width: 130px;
+    margin-top: 5px;
+}
+.li_content{
+    list-style-type: none;
+}
+.ul_content{
+    user-select: none;
+    cursor: pointer;
+    background-color: rgb(37, 37, 37);
+    box-shadow: 0 0 3px white;
+    height: 35px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+    border-radius: 6px;
+    padding-left: 15%;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+}
+.ul_content:hover{
+    background-color: rgb(68, 67, 67);
+    transition: 0.5s;
+}
+.ul_content:active{
+    box-shadow: 0 0 5px black;
+    transform:scale(0.98);
+}
+
+.content_right{
+    margin-left: 2%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.element{
+    border-radius: 5px;
+    height:min-content;
+    width: 200px;
+    box-shadow: 0 0 6px black;
+    background-color: rgb(37, 37, 37);
+    box-shadow: 0 0 2px white;
+    margin: 5px;
+}
+.element:hover{
+    transition: 0.5s;
+    transform:scale(1.02);
+}
+#img{
+    width: 200px;
+    height: 150px;
+    border-bottom: 1px solid black;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.truncate {
+    background: #f4eddf; /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.name{
+    padding: 4px;
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+    border-bottom: 1px solid rgb(102, 102, 102);
+    margin-bottom: 2;
+}
+.location{
+    font-size: small;
+    margin-top: 4px;
+    margin-left: 5px;
+    margin-bottom: 2;
+}
+.dataPublication{
+    font-size: small;
+    margin-top: 4px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+.price{
+    margin-left: 4px;
+    margin-top: 5px;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.btn{
+    user-select: none;
+    cursor: pointer;
+    transition: 0.5s;
+    color: white;
+    margin-bottom: 10px;
+    padding: 8px;
+    margin-right: 10px;
+    background-color: rgb(37, 37, 37);
+    box-shadow: 0 0 3px white;
+    border-radius: 5px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: rgb(68, 67, 67);
+    transition: 0.5s;
+}
+
+.btn:active{
+    box-shadow: 0 0 5px black;
+    transform:scale(0.98);
+}
+
+.btn.text {
+    background-color: white;
+    color: black;
+    width: 200px;
+}
+
+.cds{
+    margin: 10px;
+    display: flex;
+}
+
+.btn_position{
+    display: flex;
+}

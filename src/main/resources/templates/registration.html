@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advertisement</title>
+  <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+  <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+  <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
+  <link href="../static/css/productInfo.css" th:href="@{/css/productInfo.css}" rel="stylesheet">
+</head>
+
+<body>
+<header>
+  <div id=10 class="header">
+    <div class="wrrapper_logo">
+      <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}" alt="Зображення незнайдено">
+      <h2 class="logo_text">Post</h2>
+    </div>
+
+    <div class="wrrapper_button">
+
+      <button class="btn">Пошук</button>
+
+      <button class="btn">Розширений пошук</button>
+
+      <form th:action="@{/logout}" method="post">
+        <input class="btn" type="submit" value="Sign Out"/>
+      </form>
+    </div>
+
+  </div>
+</header>
+<div class="content">
+  <div class="content_left">
+    <li class="li_content">
+      <ul id = "ul1" class="ul_content">Акаунт</ul>
+      <ul id = "ul2" class="ul_content">Категорії</ul>
+      <ul id = "ul3" class="ul_content">Пошук</ul>
+      <ul id = "ul4" class="ul_content">Про Нас</ul>
+    </li>
+  </div>
+  <div class="content_right">
+
+    <form th:action="@{/addPost}" method="post" th:object="${post}">
+      <input placeholder="Name" name="name" type="text">
+      <input placeholder="Price" name="price" type="number">
+      <input placeholder="Description" name="description" type="">
+      <input placeholder="Img" name="img" type="text">
+      <input placeholder="Location" name="location" type="text">
+
+      <input type="submit" value="Create order">
+    </form>
+
+  </div>
+
+</div>
+
+<footer>
+  <h6>Україна 2021 Львів "BOARD"</h6>
+</footer>
+
+
+<!--<script src="/script/addPost.js"></script>-->
+<script src='/script/button.js'></script>
+
+</body>
+
+</html>

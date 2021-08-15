@@ -1,4 +1,4 @@
-package com.example.restapi.Dao.Controllers;
+package com.example.restapi.Controllers;
 
 import com.example.restapi.Dao.Model.User;
 import com.example.restapi.Dao.Repository.UserRepository;

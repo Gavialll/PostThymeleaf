@@ -1,0 +1,14 @@
+
+.login{
+    margin: auto;
+}
+
+.btn_column{
+    margin-top: 20px;
+    display: block;
+}
+
+.login_btn{
+    display: flex;
+    justify-content: center;
+}

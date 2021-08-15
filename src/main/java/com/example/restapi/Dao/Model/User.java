@@ -1,7 +1,11 @@
 package com.example.restapi.Dao.Model;
 
+import com.example.restapi.Dao.Repository.AdvertisementRepository;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,5 +23,4 @@ public class User {
     private String password;
     private String login;
     private String img;
-
 }

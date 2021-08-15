@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизація</title>
+    <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+    <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+    <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
+    <link href="../static/css/productInfo.css" th:href="@{/css/autorization.css}" rel="stylesheet">
+</head>
+
+<body>
+<header>
+    <div id=10 class="header">
+        <div class="wrrapper_logo">
+            <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}" alt="Зображення незнайдено">
+            <h2 class="logo_text">Post</h2>
+        </div>
+
+        <div class="wrrapper_button">
+
+            <button class="btn">Пошук</button>
+
+            <button class="btn">Розширений пошук</button>
+
+            <form th:action="@{/logout}" method="post">
+                <input class="btn" type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </div>
+</header>
+
+<div class="content">
+    <div class="login">
+        <div class="wrrapper_logo">
+            <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}" alt="hh">
+            <h2 class="logo_text">BOADR</h2>
+        </div>
+        <form name = "LoginForm" th:action="@{/login}" method="post">
+                <input type="text" id ="username" name="username" class="btn text btn_column">
+                <input type="password" id ="password" name="password" class="btn text btn_column">
+            <div class="login_btn">
+                <input class="btn btn_column" type="submit" value="   Вхід   ">
+                <input class="btn btn_column" type="button" value="Реєстрація">
+            </div>
+        </form>
+    </div>
+</div>
+<footer></footer>
+</body>
+</html>
