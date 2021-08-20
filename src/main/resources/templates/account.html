@@ -7,12 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advertisement</title>
+    <title>Account</title>
     <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
     <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
     <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
-    <link href="../static/css/productInfo.css" th:href="@{/css/productInfo.css}" rel="stylesheet">
+    
+    
     <link href="../static/css/account.css" th:href="@{/css/account.css}" rel="stylesheet">
+    <link href="../static/css/allPage.css" th:href="@{/css/allPage.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -24,60 +26,72 @@
         </div>
 
         <div class="wrrapper_button">
-
             <button class="btn">Пошук</button>
-
-            <button class="btn">Розширений пошук</button>
-
             <form th:action="@{/logout}" method="post">
                 <input class="btn" type="submit" value="Sign Out"/>
             </form>
         </div>
-
     </div>
 </header>
 <div class="content">
     <div class="content_left">
         <li class="li_content">
+            <ul id = "ul2" class="ul_content">Головна</ul>
             <ul id = "ul1" class="ul_content">Акаунт</ul>
-            <ul id = "ul2" class="ul_content">Категорії</ul>
             <ul id = "ul3" class="ul_content">Пошук</ul>
-            <ul id = "ul4"class="ul_content">Про Нас</ul>
+            <ul id = "ul4" class="ul_content">Про Нас</ul>
         </li>
     </div>
     <div class="content_right">
-        <div>
-            <div class="accountInfo">
-                <div class="accountText userInfo">
+        <div class="wrapper">
+            <div class="container_user">
+                <img class="img_user" src="https://хлебов.рф/files/no_photo3.jpg" th:src="${user.img}" alt="Зображення незнайдено">
+                <div class="info_user" >
                     <h1 th:text="${user.firstName + ' ' + user.lastName}">firstName</h1>
-
-                    <p th:text="${'Information: ' + user.id}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sint quo inventore laborum, magni nulla nihil incidunt, maxime, consequuntur animi dolor odio culpa officia? Cumque enim provident tenetur facilis repellat.</p>
-                
+                    <p th:text="${'Information: ' + user.id}">description</p>
                     <p th:text="${'Email: ' + user.email}">email</p>
                     <p th:text="${'Phone: ' + user.id}">Phone</p>
-
-                    <div class="accountButton">
-                        <a class="btn" th:href="@{/allPost}">all Post</a>
-                        <a class="btn" th:href="@{/addPost}">add Post</a>
-                        <a class="btn">Call</a>
-                    </div>
                 </div>
-
-                <img class="accountImg" src="../static/images/king.png" th:src="${user.img}" alt="Зображення незнайдено">
-                   
             </div>
 
+                <div class="button_user" th:if="${user.getId() == user1.getId()}">
+                    <a class="btn_user" type="submit" th:href="@{/allPost}">My Post</a>
+                    <a class="btn_user" th:href="@{/addPost}">New Post</a>
+                    <a class="btn_user" th:href="@{/addPost}">Update Account</a>
+                    <a class="btn_user" th:href="@{/addPost}">Delete Account</a>
+                </div>
+
+            <div class="container_post">
+<!--            <tr th:each="post : ${posts}">-->
+<!--                <div  class="element">-->
+<!--                    <div onclick='clickDivElem(this)' th:id="${post.getId()}">-->
+<!--                        <img id="img" th:src="${post.getImg()}" alt="https://cdn3.static1-sima-land.com/items/3225954/0/1600.jpg?v=1531128074">-->
+<!--                        <p class="name" th:text="${post.getName()}">null</p>-->
+<!--                        <p class="price" th:text="${post.getPrice()}">null</p>-->
+<!--                        <p class="location" th:text="${post.getLocation()}">null</p>-->
+<!--                        <p class="dataPublication" th:text="${post.getData()}">null</p>-->
+<!--                    </div>-->
+<!--                    <div class="buttonCrud">-->
+<!--                        <form th:action="@{/delete}" method="post">-->
+<!--                            <input type="hidden" name="id" id="id" th:value="${post.id}" />-->
+<!--                            <button type="submit" name="submit" value="value" class="btn">Delete</button>-->
+<!--                        </form>-->
+<!--                        <button onclick='btnUpdate(this)' th:id="${post.id}" class="btn">Update</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </tr>-->
+            </div>
+            <div>
+            </div>
         </div>
     </div>
-
 </div>
 
 <footer>
     <h6>Україна 2021 Львів "BOARD"</h6>
 </footer>
 
-<!--   <script src='/script/account.js'></script>-->
-<!--   <script src='/script/button.js'></script>-->
+<script src='/script/button.js'></script>
 
 </body>
 

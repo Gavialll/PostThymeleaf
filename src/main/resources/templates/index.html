@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advertisement</title>
+    <title>Post</title>
     <link href="./css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
     <link href="./css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
     <link href="./css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
@@ -19,16 +19,13 @@
 <header>
     <div id=10 class="header">
         <div class="wrrapper_logo">
-            <img class="logo" src="./images/king.png" th:src="@{/king.png}" alt="Зображення незнайдено">
+            <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}" alt="Зображення незнайдено">
             <h2 class="logo_text">Post</h2>
         </div>
 
         <div class="wrrapper_button">
-
             <button class="btn">Пошук</button>
-
             <button class="btn">Розширений пошук</button>
-
             <button id="singin" class="btn">Увійти</button>
         </div>
 
@@ -38,13 +35,21 @@
     <div class="content_left">
         <li class="li_content">
             <ul id = "ul1" class="ul_content">Акаунт</ul>
-            <ul id = "ul2" class="ul_content">Категорії</ul>
+            <ul id = "ul2" class="ul_content">Головна</ul>
             <ul id = "ul3" class="ul_content">Пошук</ul>
             <ul id = "ul4" class="ul_content">Про Нас</ul>
         </li>
     </div>
     <div class="content_right">
-
+        <tr th:each="post : ${posts}">
+            <div onclick='clickDivElem(this)' th:id="${post.getId()}" class="element">
+                <img id="img" th:src="${post.getImg()}" alt="null">
+                <p class="name" th:text="${post.getName()}">null</p>
+                <p class="price" th:text="${post.getPrice()}">null</p>
+                <p class="location" th:text="${post.getLocation()}">null</p>
+                <p class="dataPublication" th:text="${post.getData()}">null</p>
+            </div>
+        </tr>
     </div>
 
 </div>
@@ -53,8 +58,7 @@
     <h6>Україна 2021 Львів "BOARD"</h6>
 </footer>
 
-<script src='./script/index.js'></script>
-<script src='./script/button.js'></script>
+<script src='/script/button.js'></script>
 
 </body>
 

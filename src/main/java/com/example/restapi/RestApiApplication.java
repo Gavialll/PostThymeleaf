@@ -2,7 +2,6 @@ package com.example.restapi;
 
 import com.example.restapi.Dao.Model.User;
 import com.example.restapi.Dao.Repository.UserRepository;
-import com.example.restapi.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

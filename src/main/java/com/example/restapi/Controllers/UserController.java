@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
-public class ControllerUser {
+public class UserController {
 
     //Ініціалізаця репозиторія БД
     @Autowired

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+    <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+    <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
+    <link href="../static/css/postInfo.css" th:href="@{/css/postInfo.css}" rel="stylesheet">
+    
+
+</head>
+
+<body>
+    <header>
+        <div id=10 class="header">
+            <div class="wrrapper_logo">
+                <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}"
+                    alt="Зображення незнайдено">
+                <h2 class="logo_text">Post</h2>
+            </div>
+
+            <div class="wrrapper_button">
+                <button class="btn">Пошук</button>
+                <form th:action="@{/logout}" method="post">
+                    <input class="btn" type="submit" value="Sign Out" />
+                </form>
+            </div>
+
+        </div>
+    </header>
+    <div class="content">
+        <div class="content_left">
+            <li class="li_content">
+                <ul id="ul1" class="ul_content">Акаунт</ul>
+                <ul id="ul2" class="ul_content">Головна</ul>
+                <ul id="ul3" class="ul_content">Пошук</ul>
+                <ul id="ul4" class="ul_content">Про Нас</ul>
+            </li>
+        </div>
+        <div class="content_right">
+            <div class="wrapper">
+                <div class="post_container">
+                    <div class="post">
+                        <div class="text_post">
+                            <h1 th:text="${post.name}">NamePost</h1>
+                            <p th:text="${post.description}">Description: Lorem ipsum dolor sit amet consectetur,
+                                adipisicing elit. Quisquam consectetur velit aperiam odit cupiditate laborum! Illum
+                                deleniti natus quos, mollitia harum odio soluta nemo! Totam commodi sapiente doloribus
+                                mollitia sed.</p>
+                        </div>
+                        <div class="img_container">
+                            <img class="img_post" src="https://auto.vercity.ru/img/magazine/old/30090.jpg" th:src="${post.img}">
+                        </div>
+                    </div>
+                    <div onclick='clickUser(this)' th:id="${user.getId()}" class="user">
+                        <img class="img_user"
+                            th:src="${user.getImg()}">
+                        <div>
+                            <h2 th:text="${user.getFirstName()}">Name</h2>
+                            <p th:text="${user.getEmail()}">Email</p>
+                        </div>
+                        <!-- <h2>Phone: +380678755165</h2> -->
+                    </div>
+                </div>
+                <div class="postComment">
+                    <div th:if="${1 < 0}" class="message_container">
+                        <img class="img_message"
+                            th:src="${session.user.getImg()}"
+                            alt="">
+                        <div class="message">
+                            <h4 th:text="${session.user.getFirstName()}">Iron</h4>
+                            <form class="form_message">
+                                <textarea  placeholder="Message" class="text_message"></textarea>
+                                <input class="btn_message" type="submit" text="Send">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <img class="img_comment"
+                            src="https://life-secrets.ru/wp-content/uploads/2018/03/halk-294x420.jpg" alt="">
+                        <div>
+                            <h4>Mark</h4>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+
+                    <div class="comment">
+                        <img class="img_comment"
+                            src="https://life-secrets.ru/wp-content/uploads/2018/03/halk-294x420.jpg" alt="">
+                        <div>
+                            <h4>Mark</h4>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--let advertisement_print = document.querySelector(".advertisement_print");-->
+
+    <!--let div1 = document.createElement('div');-->
+    <!--div1.style.display = "flex";-->
+    <!--div1.style.flexDirection = "column";-->
+
+    <!--let img = document.createElement('img');-->
+    <!--img.src = user.img;-->
+    <!--img.classList.add("img_user");-->
+
+    <!--let userName = document.createElement('p');-->
+    <!--userName.classList.add("info")-->
+    <!--userName.innerText = "Автор: " + user.firstName + " " + user.lastName;-->
+    <!--userName.id = user.id;-->
+
+    <!--let email = document.createElement('p');-->
+    <!--email.innerText = "Email: " +  user.email;-->
+
+    <!--let div = document.createElement('div');-->
+    <!--div.classList.add("userInfo")-->
+
+    <!--div1.append(userName, email);-->
+    <!--div.append(img, div1);-->
+    <!--advertisement_print.after(div);-->
+    <!--}-->
+
+    <footer>
+        <h6>Україна 2021 Львів "BOARD"</h6>
+    </footer>
+
+    <script src='/script/button.js'></script>
+</body>
+
+</html>
