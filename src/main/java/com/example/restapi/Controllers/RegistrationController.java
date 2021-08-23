@@ -3,6 +3,8 @@ package com.example.restapi.Controllers;
 import com.example.restapi.Dao.Model.User;
 import com.example.restapi.Dao.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +29,23 @@ public class RegistrationController {
 
 
         userRepository.save(user1);
-        return "redirect:/account";
+        return "redirect:/";
     }
 
     @GetMapping("/registration")
     public String addPost(Model model){
         model.addAttribute("user", new User());
         return "registration";
+    }
+
+    @ModelAttribute("userAuth")
+    public User userAuth(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if("anonymousUser".equals(auth.getName())) {
+            User user = new User();
+            user.setId(0);
+            return user;
+        }
+        else return userRepository.findByEmail(auth.getName());
     }
 }

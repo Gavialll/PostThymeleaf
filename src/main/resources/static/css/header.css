@@ -32,6 +32,7 @@ header{
 .wrrapper_logo{
     display: flex;
     align-items: flex-end;
+    margin-left: 54px;
 }
 
 .wrrapper_button{
@@ -46,7 +47,7 @@ header{
     height: 100%;
 }
 .logo_text{
-    margin-top: 5px;
+    font-size: 3em;
 }
 
 .menu{

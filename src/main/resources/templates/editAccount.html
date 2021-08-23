@@ -20,27 +20,23 @@
   <header>
     <div id=10 class="header">
       <div class="wrrapper_logo">
-        <img class="logo" src="../static/images/king.png" th:src="@{/images/king.png}" alt="Зображення незнайдено">
         <h2 class="logo_text">Post</h2>
       </div>
 
       <div class="wrrapper_button">
-
-        <button class="btn">Пошук</button>
-
-        <button class="btn">Розширений пошук</button>
-
+        <button class="btn_index">Пошук</button>
         <form th:action="@{/logout}" method="post">
-          <input class="btn" type="submit" value="Sign Out" />
+          <input class="btn_index" type="submit" value="Sign Out"/>
         </form>
       </div>
-
     </div>
   </header>
   <div class="content">
     <div class="content_left">
       <li class="li_content">
-        <ul id="ul1" class="ul_content">Акаунт</ul>
+        <ul th:if="${userAuth.getId() != 0}"
+            onclick='clickAccount(this)' th:id="${userAuth.getId()}"
+            class="ul_content">Акаунт</ul>
         <ul id="ul2" class="ul_content">Головна</ul>
         <ul id="ul3" class="ul_content">Пошук</ul>
         <ul id="ul4" class="ul_content">Про Нас</ul>

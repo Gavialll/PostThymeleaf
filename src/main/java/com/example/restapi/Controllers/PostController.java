@@ -141,4 +141,15 @@ public class PostController {
     }
 
 
+    @ModelAttribute("userAuth")
+    public User userAuth(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if("anonymousUser".equals(auth.getName())) {
+            User user = new User();
+            user.setId(0);
+            return user;
+        }
+        else return userRepository.findByEmail(auth.getName());
+    }
+
 }

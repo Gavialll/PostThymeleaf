@@ -3,12 +3,15 @@ package com.example.restapi.Controllers;
 import com.example.restapi.Dao.Model.User;
 import com.example.restapi.Dao.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
 
     //Ініціалізаця репозиторія БД
     @Autowired
@@ -39,5 +42,16 @@ public class UserController {
     @GetMapping("/getAll")
     public @ResponseBody Iterable<User> getAllUsers(){
         return usersRepository.findAll();
+    }
+
+    @ModelAttribute("userAuth")
+    public User userAuth(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if("anonymousUser".equals(auth.getName())) {
+            User user = new User();
+            user.setId(0);
+            return user;
+        }
+        else return usersRepository.findByEmail(auth.getName());
     }
 }
