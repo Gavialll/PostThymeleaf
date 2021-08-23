@@ -1,19 +1,117 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
-    <link href="../static/css/border.css" th:href="@{/css/border.css}" rel="stylesheet" />
+    <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+    <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+    <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
+    
+    
+    <link href="../static/css/account.css" th:href="@{/css/account.css}" rel="stylesheet">
+    <link href="../static/css/allPage.css" th:href="@{/css/allPage.css}" rel="stylesheet">
 </head>
-<body>
-<h1>Account </h1>
-<h2 class="border" th:text="${user.firstName}"></h2>
-<h2 class="border" th:text="${user.lastName}"></h2>
-<div class="border">List: <a href="">All Advertisement</a> </div>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+<body>
+<header>
+    <div id=10 class="header">
+        <div class="wrrapper_logo">
+            <img class="logo" src="../static/images/king.png" th:src="@{/images/king.png}" alt="Зображення незнайдено">
+            <h2 class="logo_text">Post</h2>
+        </div>
+
+        <div class="wrrapper_button">
+            <button class="btn_index">Пошук</button>
+            <form th:action="@{/logout}" method="post">
+                <input class="btn_index" type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </div>
+</header>
+
+<div class="content">
+    <div class="content_left">
+        <li class="li_content">
+            <ul id = "ul1" th:value="${userAuth.getId()}" class="ul_content">Акаунт</ul>
+            <ul id = "ul2"  class="ul_content">Головна</ul>
+            <ul id = "ul3" class="ul_content">Категорії</ul>
+            <ul id = "ul4" class="ul_content">Про Нас</ul>
+        </li>
+    </div>
+    <div class="content_right">
+        <div class="wrapper">
+            <div class="container_user">
+                <img class="img_user" src="https://хлебов.рф/files/no_photo3.jpg" th:src="${user.img}" alt="Зображення незнайдено">
+                <div class="info_user" >
+                    <h1 th:text="${user.firstName + ' ' + user.lastName}">firstName</h1>
+                    <p th:text="${'Information: ' + user.id}">description</p>
+                    <p th:text="${'Email: ' + user.email}">email</p>
+                    <p th:text="${'Phone: ' + user.id}">Phone</p>
+                </div>
+            </div>
+
+                <div class="button_user" th:if="${userAuth.getId() == user.getId() }">
+                    <a class="btn_user" type="submit" th:href="@{/allPost}">My Post</a>
+                    <a class="btn_user" th:href="@{/addPost}">New Post</a>
+                    <a class="btn_user" th:href="@{/account/edit}">Update Account</a>
+                    <button class="btn_user" id="deleteAccount">Delete Account</button>
+                </div>
+
+            <div th:if="${userAuth.getId() != user.getId()}" class="container_post">
+            <tr th:each="post : ${posts}">
+                <div  class="element">
+                    <div onclick='clickDivElem(this)' th:id="${post.getId()}">
+                        <img id="img" src="https://хлебов.рф/files/no_photo3.jpg" th:src="${post.getImg()}" alt="">
+                        <p class="name" th:text="${post.getName()}">null</p>
+                        <p class="price" th:text="${post.getPrice()}">null</p>
+                        <p class="location" th:text="${post.getLocation()}">null</p>
+                        <p class="dataPublication" th:text="${post.getData()}">null</p>
+                    </div>
+                </div>
+            </tr>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <h6>Україна 2021 Львів "BOARD"</h6>
+</footer>
+
+<script src='/script/button.js'></script>
+<script src='/script/xnt.js'></script>
+
 </body>
+
 </html>
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"-->
+<!--      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Account</title>-->
+<!--    <link href="../static/css/border.css" th:href="@{/css/border.css}" rel="stylesheet" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Account </h1>-->
+<!--<h2 class="border" th:text="${user.firstName}"></h2>-->
+<!--<h2 class="border" th:text="${user.lastName}"></h2>-->
+<!--<div class="border">List: <a href="allAdvertisement">All Advertisement</a> </div>-->
+
+<!--<form th:action="@{/logout}" method="post">-->
+<!--    <input type="submit" value="Sign Out"/>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->

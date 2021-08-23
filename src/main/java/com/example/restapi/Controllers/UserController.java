@@ -1,4 +1,4 @@
-package com.example.restapi.Dao.Controllers;
+package com.example.restapi.Controllers;
 
 import com.example.restapi.Dao.Model.User;
 import com.example.restapi.Dao.Repository.UserRepository;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
-public class ControllerUser {
+public class UserController {
 
     //Ініціалізаця репозиторія БД
     @Autowired

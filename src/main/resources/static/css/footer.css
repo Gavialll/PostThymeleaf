@@ -1,0 +1,12 @@
+footer{
+    height: 50px;
+    width: 100%;
+    margin: auto;
+    background-color: rgb(37, 37, 37);
+    border-radius: 6px;
+    text-align: center;
+}
+
+h6 {
+    padding-top: 20px;
+}
