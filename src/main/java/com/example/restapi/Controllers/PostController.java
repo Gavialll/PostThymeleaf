@@ -1,9 +1,12 @@
 package com.example.restapi.Controllers;
 
 import com.example.restapi.Dao.Model.Advertisement;
+import com.example.restapi.Dao.Model.Comment;
 import com.example.restapi.Dao.Model.User;
 import com.example.restapi.Dao.Repository.AdvertisementRepository;
+import com.example.restapi.Dao.Repository.CommentRepository;
 import com.example.restapi.Dao.Repository.UserRepository;
+import com.example.restapi.Service.CommentList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
+import java.util.*;
 
 @Controller
 public class PostController {
@@ -20,6 +23,8 @@ public class PostController {
     private UserRepository userRepository;
     @Autowired
     private AdvertisementRepository advertisementRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     ////////////////////////////////////////////////////////////////////////////
     //використовувати два контролера для get для відправки пустого обєкту на сторінку
@@ -55,28 +60,37 @@ public class PostController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findByEmail(auth.getName());
 
-        Iterable<Advertisement> list = advertisementRepository.findAllByUser(user.getId());
-
+        List<Advertisement> list = advertisementRepository.findAllByUser(user.getId());
+        Collections.reverse(list);
         model.addAttribute("posts", list);
         return "allPost";
     }
 
     @GetMapping("/")
-    public String indexAllPost(Model model, HttpSession session){
+    public String indexAllPost(Model model){
         Iterable<Advertisement> list  = advertisementRepository.findAll();
+        Collections.reverse((List<?>) list);
         model.addAttribute("posts", list);
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByEmail(auth.getName());
-        session.setAttribute("user", user);
         return "index";
     }
 
-    @GetMapping("/{id}")
-    public String getPost(@PathVariable int id, Model post, Model user){
+    @GetMapping("/post/{id}")
+    public String getPost(@PathVariable int id, Model post, Model user, Model comment){
         Advertisement advertisement = advertisementRepository.findById(id).get();
-        post.addAttribute("post",advertisement);
+        post.addAttribute("post", advertisement);
         user.addAttribute("user", userRepository.findById(advertisement.getUser()).get());
+
+        List<CommentList> commentLists = new ArrayList<>();
+        List<Comment> comments = commentRepository.findAllByAdvertisement(advertisement.getId());
+
+        for(int i = 0; i < comments.size(); i++) {
+            User user1 = userRepository.findById(comments.get(i).getUserId()).get();
+
+            commentLists.add(new CommentList(comments.get(i).getMessage(), user1.getFirstName(), user1.getImg()));
+        }
+        Collections.reverse(commentLists);
+
+        comment.addAttribute("comments", commentLists);
         return "postInfo";
     }
 
@@ -110,6 +124,21 @@ public class PostController {
         return "updatePost";
     }
 
+    @ModelAttribute("userAuth")
+    public User user(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if("anonymousUser".equals(auth.getName())) {
+            User user = new User();
+            user.setId(0);
+          return user;
+        }
+        else return userRepository.findByEmail(auth.getName());
+    }
+
+    @ModelAttribute("comment")
+    public Comment comment(){
+        return new Comment();
+    }
 
 
 }

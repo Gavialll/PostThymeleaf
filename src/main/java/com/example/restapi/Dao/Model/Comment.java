@@ -18,4 +18,5 @@ public class Comment {
     private int advertisement;
     @Column(name = "user")
     private int userId;
+
 }

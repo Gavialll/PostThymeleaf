@@ -1,9 +1,14 @@
 
 .form_add{
+    margin: 5px;
     width: min-content;
     height: min-content;
     display: flex;
     flex-direction: column;
+    
+}
+
+.container_add{
     
 }
 

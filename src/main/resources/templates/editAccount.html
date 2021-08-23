@@ -9,10 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration</title>
   <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
-  <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
-  <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
-  <link href="../static/css/allPage.css" th:href="@{/css/allPage.css}" rel="stylesheet">
-  <link href="../static/css/registration.css" th:href="@{/css/registration.css}" rel="stylesheet">
+    <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
+    <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
+
+    <link href="../static/css/allPage.css" th:href="@{/css/allPage.css}" rel="stylesheet">
+    <link href="../static/css/updatePost.css" th:href="@{/css/updatePost.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -47,12 +48,15 @@
     </div>
     <div class="content_right">
       <div class="container_registration">
-        <form class="form_registration" th:action="@{/registration}" method="post" th:object="${user}">
-          <input placeholder="First Name" name="firstName" type="text">
-          <input placeholder="Last Name" name="lastName" type="text">
-          <input placeholder="Email" name="email" type="email">
+        <form class="form_update" id="forma" th:action="@{/account/edit/{id}(id = ${userAuth.getId()})}" method="post" th:object="${editUser}">
+          <input type="hidden" name="id" th:value="${userAuth.getId()}">
+          <input placeholder="FirstName" name="firstName" type="text" th:value="*{firstName}">
+          <input placeholder="LastName" name="lastName" type="text" th:value="*{lastName}">
+          <input placeholder="Email" name="email" type="text" th:value="*{email}">
           <input placeholder="Password" name="password" type="password">
-          <button class="btn_registration" type="submit">Registration</button>
+          <input placeholder="Img" name="img" type="text" th:value="*{img}">
+
+          <button class="btn_update" type="submit">Update</button>
         </form>
       </div>
     </div>

@@ -21,24 +21,25 @@
 <header>
     <div id=10 class="header">
         <div class="wrrapper_logo">
-            <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}" alt="Зображення незнайдено">
+            <img class="logo" src="../static/images/king.png" th:src="@{/images/king.png}" alt="Зображення незнайдено">
             <h2 class="logo_text">Post</h2>
         </div>
 
         <div class="wrrapper_button">
-            <button class="btn">Пошук</button>
+            <button class="btn_index">Пошук</button>
             <form th:action="@{/logout}" method="post">
-                <input class="btn" type="submit" value="Sign Out"/>
+                <input class="btn_index" type="submit" value="Sign Out"/>
             </form>
         </div>
     </div>
 </header>
+
 <div class="content">
     <div class="content_left">
         <li class="li_content">
-            <ul id = "ul2" class="ul_content">Головна</ul>
-            <ul id = "ul1" class="ul_content">Акаунт</ul>
-            <ul id = "ul3" class="ul_content">Пошук</ul>
+            <ul id = "ul1" th:value="${userAuth.getId()}" class="ul_content">Акаунт</ul>
+            <ul id = "ul2"  class="ul_content">Головна</ul>
+            <ul id = "ul3" class="ul_content">Категорії</ul>
             <ul id = "ul4" class="ul_content">Про Нас</ul>
         </li>
     </div>
@@ -54,32 +55,25 @@
                 </div>
             </div>
 
-                <div class="button_user" th:if="${user.getId() == user1.getId()}">
+                <div class="button_user" th:if="${userAuth.getId() == user.getId() }">
                     <a class="btn_user" type="submit" th:href="@{/allPost}">My Post</a>
                     <a class="btn_user" th:href="@{/addPost}">New Post</a>
-                    <a class="btn_user" th:href="@{/addPost}">Update Account</a>
-                    <a class="btn_user" th:href="@{/addPost}">Delete Account</a>
+                    <a class="btn_user" th:href="@{/account/edit}">Update Account</a>
+                    <button class="btn_user" id="deleteAccount">Delete Account</button>
                 </div>
 
-            <div class="container_post">
-<!--            <tr th:each="post : ${posts}">-->
-<!--                <div  class="element">-->
-<!--                    <div onclick='clickDivElem(this)' th:id="${post.getId()}">-->
-<!--                        <img id="img" th:src="${post.getImg()}" alt="https://cdn3.static1-sima-land.com/items/3225954/0/1600.jpg?v=1531128074">-->
-<!--                        <p class="name" th:text="${post.getName()}">null</p>-->
-<!--                        <p class="price" th:text="${post.getPrice()}">null</p>-->
-<!--                        <p class="location" th:text="${post.getLocation()}">null</p>-->
-<!--                        <p class="dataPublication" th:text="${post.getData()}">null</p>-->
-<!--                    </div>-->
-<!--                    <div class="buttonCrud">-->
-<!--                        <form th:action="@{/delete}" method="post">-->
-<!--                            <input type="hidden" name="id" id="id" th:value="${post.id}" />-->
-<!--                            <button type="submit" name="submit" value="value" class="btn">Delete</button>-->
-<!--                        </form>-->
-<!--                        <button onclick='btnUpdate(this)' th:id="${post.id}" class="btn">Update</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </tr>-->
+            <div th:if="${userAuth.getId() != user.getId()}" class="container_post">
+            <tr th:each="post : ${posts}">
+                <div  class="element">
+                    <div onclick='clickDivElem(this)' th:id="${post.getId()}">
+                        <img id="img" src="https://хлебов.рф/files/no_photo3.jpg" th:src="${post.getImg()}" alt="">
+                        <p class="name" th:text="${post.getName()}">null</p>
+                        <p class="price" th:text="${post.getPrice()}">null</p>
+                        <p class="location" th:text="${post.getLocation()}">null</p>
+                        <p class="dataPublication" th:text="${post.getData()}">null</p>
+                    </div>
+                </div>
+            </tr>
             </div>
             <div>
             </div>
@@ -92,6 +86,7 @@
 </footer>
 
 <script src='/script/button.js'></script>
+<script src='/script/xnt.js'></script>
 
 </body>
 

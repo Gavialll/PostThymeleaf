@@ -9,22 +9,25 @@
     <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
     <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
     <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
-    <link href="../static/css/productInfo.css" th:href="@{/css/autorization.css}" rel="stylesheet">
+    <link href="../static/css/autorization.css" th:href="@{/css/autorization.css}" rel="stylesheet">
+    <link href="../static/css/allPage.css" th:href="@{/css/allPage.css}" rel="stylesheet">
+    
+
 </head>
 
 <body>
 <header>
     <div id=10 class="header">
         <div class="wrrapper_logo">
-            <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}" alt="Зображення незнайдено">
+            <img class="logo" src="../static/images/king.png" th:src="@{/images/king.png}" alt="Зображення незнайдено">
             <h2 class="logo_text">Post</h2>
         </div>
 
         <div class="wrrapper_button">
 
-            <button class="btn">Пошук</button>
+            <button class="btn_index">Пошук</button>
 
-            <button class="btn">Розширений пошук</button>
+            <button class="btn_index">Розширений пошук</button>
 
             <form th:action="@{/logout}" method="post">
                 <input class="btn" type="submit" value="Sign Out"/>
@@ -34,19 +37,21 @@
 </header>
 
 <div class="content">
-    <div class="login">
-        <div class="wrrapper_logo">
-            <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}" alt="hh">
-            <h2 class="logo_text">BOADR</h2>
-        </div>
-        <form name = "LoginForm" th:action="@{/login}" method="post">
-                <input type="text" id ="username" name="username" class="btn text btn_column">
-                <input type="password" id ="password" name="password" class="btn text btn_column">
-            <div class="login_btn">
-                <input class="btn btn_column" type="submit" value="   Вхід   ">
-                <a th:href="@{/registration}" class="btn btn_column" type="button">Реєстрація</a>
+    <div class="wrapper_auth">
+        <div class="container_auth">
+            <div class="wrrapper_logo">
+                <img class="logo" src="../static/images/king.png" th:src="@{images/king.png}" alt="hh">
+                <h2 class="logo_text">Post</h2>
             </div>
-        </form>
+            <form class="wrapper_form"  name = "LoginForm" th:action="@{/login}" method="post">
+                    <input type="text" id ="username" name="username" class="text_auth">
+                    <input type="password" id ="password" name="password" class="text_auth">
+                <div class="login_btn">
+                    <input class="btn_auth" type="submit" value="   Вхід   ">
+                    <a th:href="@{/registration}" class="btn_auth" type="button">Реєстрація</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <footer></footer>
