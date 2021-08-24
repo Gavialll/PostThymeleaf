@@ -17,24 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CommentController {
     @Autowired
     private CommentRepository commentRepository;
-    @Autowired
-    private UserRepository userRepository;
 
     @PostMapping("/addComment")
     public String comment(@ModelAttribute Comment comment){
-
         commentRepository.save(comment);
-
         return "redirect:/post/" + comment.getAdvertisement();
-    }
-    @ModelAttribute("userAuth")
-    public User userAuth(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if("anonymousUser".equals(auth.getName())) {
-            User user = new User();
-            user.setId(0);
-            return user;
-        }
-        else return userRepository.findByEmail(auth.getName());
     }
 }

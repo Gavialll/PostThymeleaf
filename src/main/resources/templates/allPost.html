@@ -25,17 +25,19 @@
 
         <div class="wrrapper_button">
             <button class="btn_index">Пошук</button>
-            <form th:action="@{/logout}" method="post">
-                <input class="btn_index" type="submit" value="Sign Out"/>
+            <a class="btn_index" th:href="@{/}">Головна</a>
+            <form th:if="${session.authId != 0}" th:action="@{/logout}" method="post">
+                <button class="btn_index" type="submit">Вийти</button>
             </form>
+            <a class="btn_index" th:unless="${session.authId != 0}" th:href="@{/login}">Вхід</a>
         </div>
     </div>
 </header>
     <div class="content">
         <div class="content_left">
             <li class="li_content">
-                <ul th:if="${userAuth.getId() != 0}"
-                    onclick='clickAccount(this)' th:id="${userAuth.getId()}"
+                <ul th:if="${session.authId != 0}"
+                    onclick='clickAccount(this)' th:id="${session.authId}"
                     class="ul_content">Акаунт</ul>
                 <ul id="ul2" class="ul_content">Головна</ul>
                 <ul id="ul3" class="ul_content">Пошук</ul>
@@ -52,10 +54,10 @@
                     <p class="location" th:text="${post.getLocation()}">Location</p>
                     <p class="dataPublication" th:text="${post.getData()}">Date</p>
                     </div>
-                    <div th:if="${userAuth.getId() != 0 }" class="buttonPost">
-                        <button onclick='btnUpdate(this)' th:id="${post.id}" class="btn_index">Update</button>
-                        <form th:action="@{/delete}" method="post">
-                            <input type="hidden" name="id" id="id" th:value="${post.id}" />
+                    <div th:if="${session.authId != 0 }" class="buttonPost">
+                        <button onclick='btnUpdate(this)' th:id="${post.getId()}" class="btn_index">Update</button>
+                        <form th:action="@{/post/delete}" method="post">
+                            <input type="hidden" name="id" id="id" th:value="${post.getId()}" />
                             <button type="submit" name="submit" value="value" class="btn_index">Delete</button>
                         </form>
                     </div>

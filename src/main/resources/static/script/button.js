@@ -22,7 +22,7 @@ clickUser = function (user){
 }
 
 btnUpdate = function (user){
-    document.location.href = "/update?id=" + user.id;
+    document.location.href = "/post/update?id=" + user.id;
 }
 
 

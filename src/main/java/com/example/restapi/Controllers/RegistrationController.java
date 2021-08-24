@@ -18,17 +18,9 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addNewUser(@ModelAttribute User user) {
-
-        User user1 = new User();
-        user1.setFirstName(user.getFirstName());
-        user1.setLastName(user.getLastName());
-        user1.setEmail(user.getEmail());
-        user1.setPassword(user.getPassword());
-        user1.setLogin("login");
-        user1.setImg("https://хлебов.рф/files/no_photo3.jpg");
-
-
-        userRepository.save(user1);
+        user.setLogin("login");
+        user.setImg("https://хлебов.рф/files/no_photo3.jpg");
+        userRepository.save(user);
         return "redirect:/";
     }
 
@@ -36,16 +28,5 @@ public class RegistrationController {
     public String addPost(Model model){
         model.addAttribute("user", new User());
         return "registration";
-    }
-
-    @ModelAttribute("userAuth")
-    public User userAuth(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if("anonymousUser".equals(auth.getName())) {
-            User user = new User();
-            user.setId(0);
-            return user;
-        }
-        else return userRepository.findByEmail(auth.getName());
     }
 }

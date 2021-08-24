@@ -26,17 +26,19 @@
 
         <div class="wrrapper_button">
             <button class="btn_index">Пошук</button>
-            <form th:action="@{/logout}" method="post">
-                <input class="btn_index" type="submit" value="Sign Out"/>
+            <a class="btn_index" th:href="@{/}">Головна</a>
+            <form th:if="${session.authId != 0}" th:action="@{/logout}" method="post">
+                <button class="btn_index" type="submit">Вийти</button>
             </form>
+            <a class="btn_index" th:unless="${session.authId != 0}" th:href="@{/login}">Вхід</a>
         </div>
     </div>
 </header>
 <div class="content">
     <div class="content_left">
         <li class="li_content">
-            <ul th:if="${userAuth.getId() != 0}"
-                onclick='clickAccount(this)' th:id="${userAuth.getId()}"
+            <ul th:if="${session.authId != 0}"
+                onclick='clickAccount(this)' th:id="${session.authId}"
                 class="ul_content">Акаунт</ul>
             <ul id="ul2" class="ul_content">Головна</ul>
             <ul id="ul3" class="ul_content">Пошук</ul>
@@ -49,7 +51,7 @@
                     <img id="img" src="https://хлебов.рф/files/no_photo3.jpg" th:src="${post.getImg()}" alt="null">
                     <p class="name" th:text="${post.getName()}">Name</p>
                     <p class="price" th:text="${post.getPrice()}">Price</p>
-                    <p class="location" th:text="*{location}">Location</p>
+                    <p class="location" th:text="${post.getLocation()}">Location</p>
                     <p class="dataPublication" th:text="${post.getData()}">Date</p>
                 </div>
             </div>

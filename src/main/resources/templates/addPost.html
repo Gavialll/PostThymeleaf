@@ -26,17 +26,19 @@
 
         <div class="wrrapper_button">
             <button class="btn_index">Пошук</button>
-            <form th:action="@{/logout}" method="post">
-                <input class="btn_index" type="submit" value="Sign Out"/>
+            <a class="btn_index" th:href="@{/}">Головна</a>
+            <form th:if="${session.authId != 0}" th:action="@{/logout}" method="post">
+                <button class="btn_index" type="submit">Вийти</button>
             </form>
+            <a class="btn_index" th:unless="${session.authId != 0}" th:href="@{/login}">Вхід</a>
         </div>
     </div>
 </header>
 <div class="content">
     <div class="content_left">
         <li class="li_content">
-            <ul th:if="${userAuth.getId() != 0}"
-                onclick='clickAccount(this)' th:id="${userAuth.getId()}"
+            <ul th:if="${session.authId != 0}"
+                onclick='clickAccount(this)' th:id="${session.authId}"
                 class="ul_content">Акаунт</ul>
             <ul id="ul2" class="ul_content">Головна</ul>
             <ul id="ul3" class="ul_content">Пошук</ul>
@@ -45,7 +47,7 @@
     </div>
     <div class="content_right">
         <div class="container_add">
-            <form class="form_add" th:action="@{/addPost}" method="post" th:object="${post}">
+            <form class="form_add" th:action="@{/post/add}" method="post" th:object="${post}">
                 <input placeholder="Name" name="name" type="text">
                 <input placeholder="Price" name="price" type="number">
                 <textarea placeholder="Description" name="description"></textarea>

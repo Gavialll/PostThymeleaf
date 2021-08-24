@@ -11,8 +11,6 @@
     <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
     <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet">
     <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
-    
-    
     <link href="../static/css/account.css" th:href="@{/css/account.css}" rel="stylesheet">
     <link href="../static/css/allPage.css" th:href="@{/css/allPage.css}" rel="stylesheet">
 </head>
@@ -25,10 +23,13 @@
         </div>
 
         <div class="wrrapper_button">
+
             <button class="btn_index">Пошук</button>
-            <form th:action="@{/logout}" method="post">
-                <input class="btn_index" type="submit" value="Sign Out"/>
+            <a class="btn_index" th:href="@{/}">Головна</a>
+            <form th:if="${session.authId != 0}" th:action="@{/logout}" method="post">
+                <button class="btn_index" type="submit">Вийти</button>
             </form>
+            <a class="btn_index" th:unless="${session.authId != 0}" th:href="@{/login}">Вхід</a>
         </div>
     </div>
 </header>
@@ -36,8 +37,8 @@
 <div class="content">
     <div class="content_left">
         <li class="li_content">
-            <ul th:if="${userAuth.getId() != 0}"
-                onclick='clickAccount(this)' th:id="${userAuth.getId()}"
+            <ul th:if="${session.authId != 0}"
+                onclick='clickAccount(this)' th:id="${session.authId}"
                 class="ul_content">Акаунт</ul>
             <ul id="ul2" class="ul_content">Головна</ul>
             <ul id="ul3" class="ul_content">Пошук</ul>
@@ -56,14 +57,14 @@
                 </div>
             </div>
 
-                <div class="button_user" th:if="${userAuth.getId() == user.getId() }">
-                    <a class="btn_user" type="submit" th:href="@{/allPost}">My Post</a>
-                    <a class="btn_user" th:href="@{/addPost}">New Post</a>
+                <div class="button_user" th:if="${session.authId == user.getId() }">
+                    <a class="btn_user" th:href="@{/post/all}">My Post</a>
+                    <a class="btn_user" th:href="@{/post/add}">New Post</a>
                     <a class="btn_user" th:href="@{/account/edit}">Update Account</a>
-                    <button class="btn_user" id="deleteAccount">Delete Account</button>
+                    <a class="btn_user" th:href="@{/}">Delete Account</a>
                 </div>
 
-            <div th:if="${userAuth.getId() != user.getId()}" class="container_post">
+            <div th:if="${session.authId != user.getId()}" class="container_post">
             <tr th:each="post : ${posts}">
                 <div  class="element">
                     <div onclick='clickDivElem(this)' th:id="${post.getId()}">
@@ -83,7 +84,7 @@
 </div>
 
 <footer>
-    <h6>Україна 2021 Львів "BOARD"</h6>
+    <h6>Україна 2021 Львів "Post"</h6>
 </footer>
 
 <script src='/script/button.js'></script>

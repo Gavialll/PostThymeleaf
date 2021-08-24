@@ -11,8 +11,6 @@
     <link href="../static/css/content.css" th:href="@{/css/content.css}" rel="stylesheet">
     <link href="../static/css/autorization.css" th:href="@{/css/autorization.css}" rel="stylesheet">
     <link href="../static/css/allPage.css" th:href="@{/css/allPage.css}" rel="stylesheet">
-    
-
 </head>
 
 <body>
@@ -24,9 +22,11 @@
 
         <div class="wrrapper_button">
             <button class="btn_index">Пошук</button>
-            <form th:action="@{/logout}" method="post">
-                <input class="btn_index" type="submit" value="Sign Out"/>
+            <a class="btn_index" th:href="@{/}">Головна</a>
+            <form th:if="${session.authId != 0}" th:action="@{/logout}" method="post">
+                <button class="btn_index" type="submit">Вийти</button>
             </form>
+            <a class="btn_index" th:unless="${session.authId != 0}" th:href="@{/login}">Вхід</a>
         </div>
     </div>
 </header>
@@ -41,7 +41,7 @@
                     <input type="text" id ="username" name="username" class="text_auth">
                     <input type="password" id ="password" name="password" class="text_auth">
                 <div class="login_btn">
-                    <input class="btn_auth" type="submit" value="   Вхід   ">
+                    <button class="btn_auth" type="submit">   Вхід   </button>
                     <a th:href="@{/registration}" class="btn_auth" type="button">Реєстрація</a>
                 </div>
             </form>
